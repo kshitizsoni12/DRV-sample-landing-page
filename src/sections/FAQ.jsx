@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { faqContent } from '../data/siteContent';
-import { Plus, Minus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 export default function FAQ() {
   // First item open by default as shown in Screenshot 5
@@ -24,7 +24,7 @@ export default function FAQ() {
       aria-label="Frequently Asked Questions"
     >
       <div className="container" style={{ maxWidth: '840px' }}>
-        {/* Header matching Screenshot 5 */}
+        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <h2
             style={{
@@ -43,8 +43,8 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* Accordion list matching Screenshot 5 */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {/* Accordion list with refined card surfaces */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {faqContent.items.map((item, idx) => {
             const isOpen = openIndex === idx;
             const buttonId = `faq-trigger-${idx}`;
@@ -53,10 +53,16 @@ export default function FAQ() {
             return (
               <div
                 key={item.id || idx}
+                className="faq-card-row"
                 style={{
-                  borderBottom: '1px solid #E5DED7',
-                  paddingTop: '20px',
-                  paddingBottom: '20px',
+                  backgroundColor: isOpen ? '#FFFFFF' : 'rgba(255, 255, 255, 0.55)',
+                  border: isOpen ? '1px solid rgba(255, 104, 79, 0.35)' : '1px solid rgba(41, 37, 35, 0.07)',
+                  borderRadius: '16px',
+                  padding: '20px 24px',
+                  boxShadow: isOpen
+                    ? '0 12px 32px -8px rgba(41, 37, 35, 0.06)'
+                    : '0 2px 8px rgba(41, 37, 35, 0.02)',
+                  transition: 'background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               >
                 <button
@@ -72,18 +78,18 @@ export default function FAQ() {
                     justifyContent: 'space-between',
                     textAlign: 'left',
                     gap: '16px',
-                    padding: '8px 0',
                     cursor: 'pointer',
                     background: 'none',
                     border: 'none',
+                    padding: 0,
                   }}
                 >
                   <span
                     style={{
                       fontFamily: 'var(--font-heading)',
-                      fontSize: '1.15rem',
+                      fontSize: '1.125rem',
                       fontWeight: 600,
-                      color: 'var(--color-charcoal)',
+                      color: isOpen ? 'var(--color-charcoal)' : 'var(--color-charcoal)',
                       letterSpacing: '-0.01em',
                     }}
                   >
@@ -92,15 +98,20 @@ export default function FAQ() {
 
                   <span
                     style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      backgroundColor: isOpen ? 'rgba(255, 104, 79, 0.12)' : 'rgba(41, 37, 35, 0.05)',
                       color: isOpen ? 'var(--color-coral)' : 'var(--color-charcoal)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      transition: 'color 0.2s ease, transform 0.2s ease',
+                      transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, color 0.25s ease',
                     }}
                   >
-                    {isOpen ? <Minus size={22} /> : <Plus size={22} />}
+                    <Plus size={18} strokeWidth={2.5} />
                   </span>
                 </button>
 
@@ -114,8 +125,8 @@ export default function FAQ() {
                   <div className="faq-panel-inner">
                     <p
                       style={{
-                        paddingTop: '12px',
-                        paddingBottom: '8px',
+                        paddingTop: '16px',
+                        paddingBottom: '4px',
                         fontSize: '0.9375rem',
                         color: 'var(--color-text-muted)',
                         lineHeight: 1.65,
@@ -133,6 +144,9 @@ export default function FAQ() {
       </div>
 
       <style>{`
+        .faq-card-row:hover {
+          border-color: rgba(255, 104, 79, 0.25);
+        }
         .faq-panel-grid {
           display: grid;
           grid-template-rows: 0fr;

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import MagneticButton from '../components/MagneticButton';
 import { finalCtaContent } from '../data/siteContent';
-import { ArrowRight, MessageSquare } from 'lucide-react';
+import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -43,7 +43,23 @@ export default function FinalCTA() {
       }}
       aria-label="Ready to start"
     >
-      <div className="container">
+      <div className="container" style={{ position: 'relative' }}>
+        {/* Ambient Warm Halo behind the CTA Card */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            left: '5%',
+            width: '90%',
+            height: '140%',
+            background: 'radial-gradient(ellipse at center, rgba(255, 104, 79, 0.12) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+          aria-hidden="true"
+        />
+
         {/* Large White CTA Panel matching Screenshot 5 & 6 */}
         <div
           ref={cardRef}
@@ -52,27 +68,47 @@ export default function FinalCTA() {
             borderRadius: '32px',
             padding: '72px 40px',
             textAlign: 'center',
-            boxShadow: '0 16px 48px rgba(41, 37, 34, 0.05)',
-            border: '1px solid rgba(41, 37, 34, 0.06)',
+            boxShadow: '0 24px 64px -16px rgba(41, 37, 35, 0.08), 0 2px 8px rgba(41, 37, 35, 0.02)',
+            border: '1px solid rgba(41, 37, 35, 0.08)',
             maxWidth: '960px',
             margin: '0 auto',
             position: 'relative',
+            zIndex: 1,
+            overflow: 'hidden',
           }}
         >
-          {/* Overlapping Team Avatars Cluster */}
+          {/* Subtle top edge lighting gradient */}
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'center',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '3px',
+              background: 'linear-gradient(90deg, transparent, var(--color-coral), transparent)',
+              opacity: 0.8,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Overlapping Team Avatars Cluster & Verified Badge */}
+          <div
+            style={{
+              display: 'inline-flex',
               alignItems: 'center',
+              gap: '12px',
+              backgroundColor: 'rgba(247, 243, 240, 0.8)',
+              border: '1px solid rgba(41, 37, 35, 0.08)',
+              borderRadius: '999px',
+              padding: '6px 16px 6px 6px',
               marginBottom: '28px',
             }}
           >
             <div
               style={{
                 width: '74px',
-                height: '42px',
-                borderRadius: '24px',
+                height: '36px',
+                borderRadius: '20px',
                 overflow: 'hidden',
                 display: 'flex',
                 alignItems: 'center',
@@ -83,7 +119,7 @@ export default function FinalCTA() {
                 src={finalCtaContent.avatarsImage}
                 alt="DRV Assistants Dedicated Remote Team Specialists"
                 width="74"
-                height="42"
+                height="36"
                 loading="lazy"
                 style={{
                   width: '100%',
@@ -93,6 +129,19 @@ export default function FinalCTA() {
                 }}
               />
             </div>
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-charcoal)',
+              }}
+            >
+              <Sparkles size={14} style={{ color: 'var(--color-coral)' }} />
+              Ready to onboard your assistant
+            </span>
           </div>
 
           {/* Headline */}

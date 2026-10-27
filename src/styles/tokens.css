@@ -1,28 +1,33 @@
 :root {
-  /* Core 4-Color Palette */
+  /* Core 4-Color Palette (Master Visual Direction) */
   --color-warm-ivory: #F7F3F0;
   --color-coral: #FF684F;
-  --color-charcoal: #292522;
+  --color-charcoal: #292523;
   --color-white: #FFFFFF;
 
-  /* Harmonious Tonal Extensions */
+  /* Harmonious Tonal Extensions & Ambient Illumination */
   --color-ivory-light: #FDFBF9;
   --color-ivory-card: #FFFFFF;
+  --color-ivory-subtle: #FAF7F4;
   --color-ivory-border: #E8E1DA;
-  --color-border-subtle: rgba(41, 37, 34, 0.08);
-  --color-border-hover: rgba(41, 37, 34, 0.18);
+  --color-border-subtle: rgba(41, 37, 35, 0.07);
+  --color-border-hover: rgba(41, 37, 35, 0.18);
   
   --color-coral-hover: #F2573D;
   --color-coral-active: #E64930;
-  --color-coral-soft: rgba(255, 104, 79, 0.12);
+  --color-coral-soft: rgba(255, 104, 79, 0.10);
   --color-coral-border: rgba(255, 104, 79, 0.28);
-  --color-coral-glow: rgba(255, 104, 79, 0.35);
+  --color-coral-glow: rgba(255, 104, 79, 0.32);
 
-  --color-charcoal-dark: #1F1C1A;
-  --color-charcoal-light: #3D3834;
-  --color-text-main: #292522;
+  --color-charcoal-dark: #1E1B19;
+  --color-charcoal-light: #3D3835;
+  --color-text-main: #292523;
   --color-text-muted: #66605B;
   --color-text-light: #948D87;
+
+  /* Ambient Lighting Gradients */
+  --ambient-glow-warm: radial-gradient(circle, rgba(255, 104, 79, 0.13) 0%, rgba(247, 243, 240, 0) 70%);
+  --ambient-glow-ivory: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(247, 243, 240, 0) 70%);
 
   /* Typography */
   --font-heading: 'Space Grotesk', 'Manrope', -apple-system, sans-serif;

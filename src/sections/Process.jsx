@@ -71,9 +71,25 @@ export default function Process() {
       }}
       aria-label="How it works"
     >
-      <div className="container">
-        {/* Header matching Screenshot 3 */}
-        <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+      <div className="container" style={{ position: 'relative' }}>
+        {/* Ambient Warm Halo behind the process flow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '20%',
+            left: '20%',
+            width: '60%',
+            height: '60%',
+            background: 'radial-gradient(circle, rgba(255, 104, 79, 0.08) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '72px', position: 'relative', zIndex: 1 }}>
           <SectionBadge id="process-badge">{processContent.badge}</SectionBadge>
 
           <h2
@@ -100,6 +116,7 @@ export default function Process() {
             gap: '40px',
             maxWidth: '1000px',
             margin: '0 auto 64px auto',
+            zIndex: 1,
           }}
           className="process-steps-grid"
         >
@@ -131,7 +148,7 @@ export default function Process() {
                 y1="2"
                 x2="1000"
                 y2="2"
-                stroke="#D9D0C7"
+                stroke="rgba(41, 37, 35, 0.15)"
                 strokeWidth="2.5"
                 strokeDasharray="6 6"
                 strokeDashoffset="0"
@@ -159,8 +176,8 @@ export default function Process() {
                   height: '80px',
                   borderRadius: '50%',
                   backgroundColor: '#FFFFFF',
-                  border: '1px solid rgba(41, 37, 34, 0.1)',
-                  boxShadow: '0 8px 24px rgba(41, 37, 34, 0.05)',
+                  border: '1px solid rgba(41, 37, 35, 0.1)',
+                  boxShadow: '0 8px 24px rgba(41, 37, 35, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -169,7 +186,8 @@ export default function Process() {
                   fontWeight: 600,
                   color: 'var(--color-charcoal)',
                   marginBottom: '28px',
-                  transition: 'transform 0.25s ease, border-color 0.25s ease',
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease',
+                  cursor: 'default',
                 }}
               >
                 {step.number}
@@ -205,8 +223,8 @@ export default function Process() {
           ))}
         </div>
 
-        {/* CTA Button below steps matching Screenshot 3 & 4 */}
-        <div style={{ textAlign: 'center' }}>
+        {/* CTA Button below steps */}
+        <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <MagneticButton
             href={processContent.ctaHref || '#pricing'}
             variant="primary"
@@ -219,9 +237,10 @@ export default function Process() {
 
       <style>{`
         .process-step-node:hover {
-          transform: scale(1.08);
+          transform: scale(1.1) translateY(-2px);
           border-color: var(--color-coral) !important;
           color: var(--color-coral) !important;
+          box-shadow: 0 12px 28px -4px rgba(255, 104, 79, 0.3) !important;
         }
         @media (max-width: 768px) {
           .process-steps-grid {

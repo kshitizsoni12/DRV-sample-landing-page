@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import SectionBadge from '../components/SectionBadge';
 import MagneticButton from '../components/MagneticButton';
 import { pricingContent } from '../data/siteContent';
-import { Check, X, Shield, Sparkles, Zap } from 'lucide-react';
+import { Check, X, Shield, Sparkles, Zap, Star } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -58,7 +58,7 @@ export default function Pricing() {
       aria-label="Plans and Pricing"
     >
       <div className="container">
-        {/* Header matching Screenshot 4 */}
+        {/* Header */}
         <div style={{ textAlign: 'left', marginBottom: '56px' }}>
           <SectionBadge id="pricing-badge">{pricingContent.badge}</SectionBadge>
 
@@ -101,7 +101,7 @@ export default function Pricing() {
                     width: '38px',
                     height: '38px',
                     borderRadius: '10px',
-                    backgroundColor: '#F8DDD6',
+                    backgroundColor: 'rgba(255, 104, 79, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -137,22 +137,65 @@ export default function Pricing() {
             return (
               <div
                 key={plan.id}
-                className="pricing-card-anim"
+                className={`pricing-card-anim pricing-plan-card ${isFullTime ? 'featured-plan' : ''}`}
                 style={{
-                  backgroundColor: isFullTime ? 'var(--color-coral)' : '#FAF7F4',
-                  color: isFullTime ? '#FFFFFF' : 'var(--color-charcoal)',
-                  border: isFullTime ? 'none' : '1px solid #EBE4DD',
+                  backgroundColor: '#FFFFFF',
+                  color: 'var(--color-charcoal)',
+                  border: isFullTime ? '2px solid var(--color-coral)' : '1px solid rgba(41, 37, 35, 0.08)',
                   borderRadius: '24px',
                   padding: '40px 32px',
                   display: 'flex',
                   flexDirection: 'column',
                   boxShadow: isFullTime
-                    ? '0 16px 40px -8px rgba(255, 104, 79, 0.45)'
+                    ? '0 20px 48px -12px rgba(255, 104, 79, 0.22), 0 4px 16px rgba(41, 37, 35, 0.04)'
                     : '0 8px 30px rgba(41, 37, 34, 0.04)',
                   position: 'relative',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
+                {/* Ambient Warm Halo behind the featured plan card */}
+                {isFullTime && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '-10%',
+                      left: '-8%',
+                      width: '116%',
+                      height: '120%',
+                      background: 'radial-gradient(ellipse at 50% 20%, rgba(255, 104, 79, 0.16) 0%, transparent 70%)',
+                      filter: 'blur(36px)',
+                      pointerEvents: 'none',
+                      zIndex: -1,
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+
+                {/* Popular Pill Badge for Featured Plan */}
+                {isFullTime && (
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      backgroundColor: 'rgba(255, 104, 79, 0.1)',
+                      color: 'var(--color-coral)',
+                      border: '1px solid rgba(255, 104, 79, 0.25)',
+                      borderRadius: '999px',
+                      padding: '5px 12px',
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      marginBottom: '18px',
+                      width: 'fit-content',
+                    }}
+                  >
+                    <Star size={12} fill="var(--color-coral)" strokeWidth={0} />
+                    Most Popular & Best Value
+                  </div>
+                )}
+
                 {/* Card Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
                   <div>
@@ -161,7 +204,7 @@ export default function Pricing() {
                         fontFamily: 'var(--font-heading)',
                         fontSize: '1.45rem',
                         fontWeight: 700,
-                        color: isFullTime ? '#FFFFFF' : 'var(--color-charcoal)',
+                        color: 'var(--color-charcoal)',
                       }}
                     >
                       {plan.name}
@@ -173,7 +216,7 @@ export default function Pricing() {
                         fontFamily: 'var(--font-heading)',
                         fontSize: '1.9rem',
                         fontWeight: 800,
-                        color: isFullTime ? '#FFFFFF' : 'var(--color-charcoal)',
+                        color: isFullTime ? 'var(--color-coral)' : 'var(--color-charcoal)',
                         lineHeight: 1,
                       }}
                     >
@@ -182,7 +225,7 @@ export default function Pricing() {
                         style={{
                           fontSize: '1rem',
                           fontWeight: 500,
-                          color: isFullTime ? 'rgba(255,255,255,0.85)' : 'var(--color-text-muted)',
+                          color: 'var(--color-text-muted)',
                         }}
                       >
                         {plan.period}
@@ -191,7 +234,7 @@ export default function Pricing() {
                     <div
                       style={{
                         fontSize: '0.75rem',
-                        color: isFullTime ? 'rgba(255,255,255,0.85)' : 'var(--color-text-muted)',
+                        color: 'var(--color-text-muted)',
                         marginTop: '4px',
                       }}
                     >
@@ -205,9 +248,9 @@ export default function Pricing() {
                   style={{
                     fontSize: '0.875rem',
                     fontWeight: 600,
-                    color: isFullTime ? '#FFFFFF' : 'var(--color-charcoal)',
+                    color: 'var(--color-charcoal)',
                     marginBottom: '18px',
-                    borderTop: isFullTime ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid #EBE4DD',
+                    borderTop: '1px solid rgba(41, 37, 35, 0.08)',
                     paddingTop: '20px',
                   }}
                 >
@@ -215,7 +258,7 @@ export default function Pricing() {
                 </div>
 
                 {/* Features List */}
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px', flexGrow: 1 }}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px', flexGrow: 1, padding: 0, margin: '0 0 36px 0' }}>
                   {plan.features.map((item, fIdx) => (
                     <li
                       key={fIdx}
@@ -224,11 +267,7 @@ export default function Pricing() {
                         alignItems: 'center',
                         gap: '12px',
                         fontSize: '0.875rem',
-                        color: isFullTime
-                          ? '#FFFFFF'
-                          : item.included
-                          ? 'var(--color-charcoal)'
-                          : '#9C9690',
+                        color: item.included ? 'var(--color-charcoal)' : '#9C9690',
                       }}
                     >
                       {item.included ? (
@@ -237,8 +276,8 @@ export default function Pricing() {
                             width: '20px',
                             height: '20px',
                             borderRadius: '50%',
-                            backgroundColor: isFullTime ? '#FFFFFF' : '#292522',
-                            color: isFullTime ? 'var(--color-coral)' : '#FFFFFF',
+                            backgroundColor: isFullTime ? 'var(--color-coral)' : 'var(--color-charcoal)',
+                            color: '#FFFFFF',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -253,7 +292,7 @@ export default function Pricing() {
                             width: '20px',
                             height: '20px',
                             borderRadius: '50%',
-                            backgroundColor: '#E2DBD4',
+                            backgroundColor: '#EBE4DD',
                             color: '#9C9690',
                             display: 'flex',
                             alignItems: 'center',
@@ -271,14 +310,16 @@ export default function Pricing() {
 
                 <MagneticButton
                   href={plan.buttonHref}
-                  variant={isFullTime ? 'secondary' : 'secondary'}
+                  variant={isFullTime ? 'primary' : 'secondary'}
                   id={`${plan.id}-plan-btn`}
                   style={{
                     width: '100%',
                     justifyContent: 'center',
-                    backgroundColor: '#FFFFFF',
-                    color: 'var(--color-charcoal)',
                     fontWeight: 700,
+                    backgroundColor: isFullTime ? 'var(--color-coral)' : 'var(--color-charcoal)',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    boxShadow: isFullTime ? '0 8px 24px -4px rgba(255, 104, 79, 0.35)' : 'none',
                   }}
                 >
                   {plan.buttonText}
@@ -290,6 +331,10 @@ export default function Pricing() {
       </div>
 
       <style>{`
+        .pricing-plan-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 24px 56px -12px rgba(41, 37, 35, 0.12) !important;
+        }
         @media (max-width: 990px) {
           .pricing-layout-grid {
             grid-template-columns: 1fr !important;

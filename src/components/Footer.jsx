@@ -73,7 +73,7 @@ export default function Footer() {
       <footer
         id="site-footer"
         style={{
-          backgroundColor: '#1E1B19',
+          backgroundColor: 'var(--color-charcoal)',
           color: '#E8E1DA',
           paddingTop: '80px',
           paddingBottom: '36px',

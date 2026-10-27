@@ -30,8 +30,16 @@ export default function TrustedBy() {
           </h2>
         </div>
 
-        {/* Marquee Ticker */}
-        <BrandTicker />
+        {/* Marquee Ticker with Cinematic Edge Falloff */}
+        <div
+          style={{
+            position: 'relative',
+            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+          }}
+        >
+          <BrandTicker />
+        </div>
       </div>
     </section>
   );
