@@ -19,8 +19,8 @@ export default function BrandTicker() {
           <img
             src="/images/brands-strip.webp"
             alt="Trusted partner brand logos including Forbes, Entrepreneur, Yahoo, CNN, Fox, HP"
-            width="795"
-            height="45"
+            width="1024"
+            height="49"
             style={{
               height: '38px',
               width: 'auto',
@@ -36,8 +36,8 @@ export default function BrandTicker() {
           <img
             src="/images/brands-strip.webp"
             alt=""
-            width="795"
-            height="45"
+            width="1024"
+            height="49"
             style={{
               height: '38px',
               width: 'auto',
